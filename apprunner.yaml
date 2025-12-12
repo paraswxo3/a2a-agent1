@@ -1,0 +1,27 @@
+# apprunner.yaml
+version: 1.0 
+runtime: python3 
+
+build:
+  # App Runner installs dependencies based on pyproject.toml
+  # No build command is usually needed if App Runner can install your package.
+  commands:
+    # Optional: If you need to force an install with your specific setup
+    # install:
+    #   - pip install -e . 
+    #   - (or) uv pip install -e .
+
+run:
+  # The command to start the web service
+  command: "python app/__main__.py --host 0.0.0.0 --port 8080"
+  
+  # App Runner expects the service to listen on the port it defines (default 8080)
+  network:
+    port: 8080
+
+# Environment variables needed by your agent (Watsonx API keys)
+environment:
+  - name: WATSONX_API_KEY
+    value: arn:aws:secretsmanager:us-east-1:061039792161:secret:apprunner/currency-agent/watsonx-keys-sMI3Pp  # IMPORTANT: Use App Runner secrets manager for this
+  - name: WATSONX_PROJECT_ID
+    value: arn:aws:secretsmanager:us-east-1:061039792161:secret:apprunner/currency-agent/watsonx-keys-sMI3Pp
