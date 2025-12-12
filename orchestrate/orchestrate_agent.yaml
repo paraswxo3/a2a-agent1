@@ -1,0 +1,18 @@
+spec_version: v1
+kind: external
+name: currency_agent
+title: Currency Agent
+nickname: currency_agent
+provider: external_chat/A2A/0.3.0
+description: |
+  CurrencyAgent - a specialized assistant for currency convesions.
+tags:
+  - currency
+api_url: "http://host.docker.internal:10000"
+auth_scheme: NONE
+chat_params:
+  sendHistory: false
+  stream: true
+  pushNotifications: false
+config:
+  hidden: false
